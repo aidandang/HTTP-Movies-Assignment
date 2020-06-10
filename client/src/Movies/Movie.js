@@ -20,7 +20,7 @@ function Movie({ addToSavedList }) {
     axios
       .delete(`http://localhost:5000/api/movies/${id}`)
       .then(res => {
-        console.log(res)
+        history.push('/');
       })
       .catch((err) => console.log(err.response));
   };
