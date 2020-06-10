@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, useLocation } from "react-router-dom";
 import SavedList from "./Movies/SavedList";
 import MovieList from "./Movies/MovieList";
 import Movie from "./Movies/Movie";
@@ -7,6 +7,7 @@ import axios from 'axios';
 import UpdateMovie from './Movies/UpdateMovie';
 
 const App = () => {
+  const location = useLocation();
   const [savedList, setSavedList] = useState([]);
   const [movieList, setMovieList] = useState([]);
 
@@ -23,7 +24,7 @@ const App = () => {
 
   useEffect(() => {
     getMovieList();
-  }, []);
+  }, [location.key]);
 
   return (
     <>
@@ -38,7 +39,7 @@ const App = () => {
       </Route>
 
       <Route exact path="/update-movie/:id">
-        <UpdateMovie />
+        <UpdateMovie movies={movieList} />
       </Route>
     </>
   );
